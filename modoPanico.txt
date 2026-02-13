@@ -1,0 +1,12 @@
+Juntar los errores seguidos, si es 124#¬½567 que en lugar de dar 3 errores,
+que de solo un error junto.
+
+Cuando entro al modo panico busco coincidencias que no son válidas.
+
+Lo suyo es que en el modo pánico busque caracter a caracter buscando los que
+no son válidos, hasta encontrar uno válido y salir de este modo.
+
+Una ER podría ser: [^(caracteres_válidos)]+
+
+El + es para que se unan los caracteres de error.
+
