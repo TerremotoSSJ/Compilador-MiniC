@@ -1,13 +1,14 @@
 %{
 #include "lexicoMiniC.h"
 #include <stdlib.h>
+#include <math.h>
 void error_lexico();
 %}
 digito              [0-9]
 letra               [a-zA-Z]
 entero              {digito}+
 %%
-[ \n\t]+                            ;
+[ \n\t\r]+                            ;
 
 void                                return VOID;
 var                                 return VAR;
@@ -19,12 +20,15 @@ while                               return WHILE;
 print                               return PRINT;
 read                                return READ;
 
-{letra}({letra}|{digito}|_)*        return ID;
+{letra}({letra}|{digito}|_)*  {      
+    
+    if (yyleng < 33) return ID;
+    printf("El id no puede superar los 32 caracteres.");
+    }
 {entero} {
 
-    if (yylen < 10 || yylen == 10 && atoll(yytext) < pow(2,32)) return INTLITERAL;
-    printf("El numero es mayor que 2^32");
-    return yytext;
+    if (yyleng < 10 || yyleng == 10 && atoll(yytext) <= pow(2,31)) return INTLITERAL;
+    printf("El numero es mayor que 2^31 en valor absoluto\n");
 }
 
 
@@ -42,12 +46,12 @@ read                                return READ;
 "-"                                 return MINUSOP;
 "*"                                 return ASTERISC;
 "/"                                 return BARRAD;
-.                                   error_lexico();
+[^a-zA-Z0-9(){};,"=+\-*\/\n\t]+     error_lexico();
 %%
 
 void error_lexico()
 {
-  printf("\nERROR, s�mbolo no reconocido %s\n",yytext);
+  printf("\nERROR, Cadena de simbolos no reconocidos %s\n",yytext);
 }
 
 void main() {
