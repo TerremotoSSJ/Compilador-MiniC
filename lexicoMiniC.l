@@ -53,10 +53,3 @@ void error_lexico()
 {
   printf("\nERROR, Cadena de simbolos no reconocidos %s\n",yytext);
 }
-
-void main() {
-    int i;
-    while (i=yylex())
-        printf("%d %s\n",i,yytext);
-    printf("FIN DE ANALISIS LEXICO\n");
-}
