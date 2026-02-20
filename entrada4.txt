@@ -1,0 +1,16 @@
+void main() {
+    var int a = 1, b = 2, c = 3, res;
+    
+    // Bloque vacío (debería ser válido según la gramática body -> lambda)
+    {
+    }
+
+    /* Expresión con todos los operadores aritméticos */
+    res = a + b * c / (a - 5) + -b;
+    
+    if (res) 
+        if (a) print("Anidamiento sin llaves 1\n");
+        else print("Anidamiento sin llaves 2\n");
+    
+    print("Resultado final: ", res, "\n");
+}

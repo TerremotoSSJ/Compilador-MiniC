@@ -1,0 +1,21 @@
+void main() {
+    var int i = 0, j, limite = 5;
+    
+    print("Iniciando bucles anidados...\n");
+    
+    while (limite - i) {
+        i = i + 1;
+        j = 0;
+        
+        if (i) {
+            while (3 - j) {
+                j = j + 1;
+                print("i: ", i, " j: ", j, "\n");
+            }
+        } else {
+            print("Este codigo nunca deberia ejecutarse\n");
+        }
+    }
+    
+    print("Fin del programa.\t\"Exito\"\n");
+}

@@ -11,5 +11,5 @@ fi
 
 #Ahora indicamos al usuario que programa tiene que ejecutar
 
-echo "El archivo de salida es 'programalexico'"
-echo "Ejecutar './programalexico' y después te pedira introducir el nombre de la entrada"
+echo "El archivo de salida es 'programalexicoSintcMiniC'"
+echo "Ejecutar './programalexicoSintcMiniC < archivo entrada'"

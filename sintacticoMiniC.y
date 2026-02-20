@@ -8,6 +8,15 @@ extern char *yytext;
 
 %token VOID VAR CONST INT ID INTLITERAL STRINGLITERAL IF ELSE WHILE PRINT LPAREN RPAREN LLLAVE RLLAVE SEMICOLON COMMA ASSIGN PLUSOP MINUSOP MULTIOP BARRAD READ
 
+//Para evitar antiguedades se utiliza %left y %right para establecer asociatividad por la izquierda o derecha
+%left PLUSOP MINUSOP
+%left MULTIOP BARRAD
+//El UMINUS LO PODEMOS USAR PARA ESTABLECER QUE EL - NO ES RESTA SINO SIGNO DE UN NUMERO
+%right UMINUS
+
+%nonassoc RPAREN
+%nonassoc ELSE
+
 %%
 
 program     :   VOID ID LPAREN RPAREN LLLAVE body RLLAVE
@@ -18,8 +27,8 @@ body        :   body declaration
     |            /* empty */
     ;
 
-declaration :   VAR tipo id_list;
-    |           const tipo id_list;
+declaration :   VAR tipo id_list SEMICOLON
+    |           CONST tipo id_list SEMICOLON
     ;
 
 tipo        :   INT
@@ -34,9 +43,10 @@ id_decl     :  ID
     ;
 
 statement   :  ID ASSIGN expression SEMICOLON
+    |          LLLAVE statement_list RLLAVE
     |          IF LPAREN expression RPAREN statement ELSE statement
     |          IF LPAREN expression RPAREN statement
-    |          WHILE LPAREN expression RPARENT statement
+    |          WHILE LPAREN expression RPAREN statement
     |          PRINT LPAREN print_list RPAREN SEMICOLON
     |          READ LPAREN read_list RPAREN SEMICOLON
     ;
@@ -61,7 +71,7 @@ expression  :   expression PLUSOP expression
     |           expression MINUSOP expression
     |           expression MULTIOP expression
     |           expression BARRAD expression
-    |           MINUSOP expression
+    |           MINUSOP expression %prec UMINUS
     |           LPAREN expression RPAREN
     |           ID
     |           INTLITERAL

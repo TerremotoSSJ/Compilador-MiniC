@@ -37,7 +37,8 @@ read                                return READ;
 
 
 \"([^"]|\\\\|\\\")*\"               return STRINGLITERAL;
-
+"/*"([^*]|[*]+[^*/])*[*]+"/"                     ;
+"//".*                                           ;
 "("                                 return LPAREN;		
 ")"                                 return RPAREN;
 "{"                                 return LLLAVE;

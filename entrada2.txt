@@ -1,0 +1,17 @@
+/* Prueba 1: Declaraciones, constantes y entrada/salida 
+   Verifica el soporte de listas en id_list y print_list.
+*/
+
+void main() {
+    // Declaraciones con y sin inicialización
+    var int x, y = 10, resultado;
+    const int FACTOR = 2, OFFSET = 5;
+    
+    print("Introduce un valor para x: ");
+    read(x); 
+    
+    /* Cálculo con precedencia y unarios */
+    resultado = (x * FACTOR) + -OFFSET;
+    
+    print("El resultado de (", x, " * ", FACTOR, ") + -", OFFSET, " es: ", resultado, "\n");
+}
