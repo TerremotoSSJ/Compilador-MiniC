@@ -27,7 +27,7 @@ write                               return WRITE;
 
 void error_lexico()
 {
-  printf("\nERROR, s�mbolo no reconocido %s\n",yytext);
+  printf("\nERROR, simbolo no reconocido %s\n",yytext);
 }
 
 void main() {

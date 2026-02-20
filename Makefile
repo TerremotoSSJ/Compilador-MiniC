@@ -1,19 +1,13 @@
-#Makefile for compilin the file lexicoMiniC.l
+programaLexySintcMiniC: lex.yy.c sintacticoMiniC.tab.h lexicoMiniC.h
+	gcc lex.yy.c sintacticoMiniC.tab.c -lfl -o programaLexySintcMiniC
 
-# Variables
-FLEX = flex
-GCC = gcc
-FLEX_FILE = lexicoMiniC.l
-OUTPUT_C = lex.yy.c
-MAIN_C = mainMiniC.c
-OUTPUT_EXEC = programalexico
+lex.yy.c: lexicoMiniC.l
+	flex lexicoMiniC.l
 
-# Targets
-all: $(OUTPUT_EXEC)
+sintacticoMiniC.tab.c sintacticoMiniC.tab.h: sintacticoMiniC.y #Para separar el lexico del sintactico
+	bison -d sintacticoMiniC.y
 
-$(OUTPUT_EXEC): $(FLEX_FILE) $(MAIN_C)
-	$(FLEX) $(FLEX_FILE)
-	$(GCC) $(MAIN_C) $(OUTPUT_C) -lfl -o $(OUTPUT_EXEC)
+limpiar:
+	rm lex.yy.c programaLexySintcMiniC
 
-clean:
-	rm -f $(OUTPUT_EXEC) $(OUTPUT_C)
+ 

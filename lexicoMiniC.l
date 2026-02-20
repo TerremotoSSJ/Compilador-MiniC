@@ -1,12 +1,15 @@
 %{
-#include "lexicoMiniC.h"
+#include "sintacticoMiniC.tab.h"
 #include <stdlib.h>
 #include <math.h>
 void error_lexico();
 %}
+
 digito              [0-9]
 letra               [a-zA-Z]
 entero              {digito}+
+%option yylineno
+
 %%
 [ \n\t\r]+                            ;
 
@@ -44,12 +47,12 @@ read                                return READ;
 "="                                 return ASSIGN;
 "+"                                 return PLUSOP;
 "-"                                 return MINUSOP;
-"*"                                 return ASTERISC;
+"*"                                 return MULTIOP;
 "/"                                 return BARRAD;
 [^a-zA-Z0-9(){};,"=+\-*\/\n\t]+     error_lexico();
 %%
 
 void error_lexico()
 {
-  printf("\nERROR, Cadena de simbolos no reconocidos %s\n",yytext);
+    printf("Error lexico en el caracter %s en la linea %d\n", yytext, yylineno);
 }

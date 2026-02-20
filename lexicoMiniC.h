@@ -18,6 +18,6 @@
 #define             ASSIGN          18
 #define             PLUSOP          19
 #define             MINUSOP         20
-#define             ASTERISC        21
+#define             MULTIOP         21
 #define             BARRAD          22
 #define             READ            23
